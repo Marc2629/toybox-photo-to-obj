@@ -1,0 +1,18 @@
+# Use Python 3.11 on Windows. TripoSR's native dependencies are not Python 3.14 friendly yet.
+gradio>=4.44,<7
+rembg[cpu]>=2.0.67
+Pillow>=10.1
+numpy>=1.26,<2
+opencv-python==4.10.0.84
+torch>=2.1
+torchvision>=0.16
+trimesh>=4.0
+huggingface-hub>=0.20
+transformers>=4.35
+omegaconf>=2.3
+einops>=0.7
+imageio[ffmpeg]>=2.31
+moderngl>=5.10
+xatlas>=0.0.9
+timm>=1.0
+torchdiffeq>=0.2

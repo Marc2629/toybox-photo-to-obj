@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Local model/source checkouts and downloaded weights
+vendor/
+models/
+*.ckpt
+*.safetensors
+*.pt
+*.pth
+*.onnx
+
+# Generated app files
+outputs/*
+!outputs/.gitkeep
+temp/*
+!temp/.gitkeep
+
+# Logs and local settings
+*.log
+.env
+.env.*
+
+# Editor/OS noise
+.vscode/
+.idea/
+Thumbs.db
+Desktop.ini
+
+# Local assistant/tool config
+.claude/
