@@ -4,6 +4,7 @@ param(
 
     [switch]$SkipHunyuan,
     [switch]$SkipTripoSR,
+    [switch]$NoPythonInstall,
     [switch]$Force
 )
 
@@ -100,12 +101,32 @@ Write-Host "Toybox Photo to OBJ Windows setup" -ForegroundColor White
 Write-Host "Project folder: $PWD"
 
 Write-Step "Checking prerequisites"
-Require-Command "py" "Install Python 3.11 from https://www.python.org/downloads/windows/ and keep the Python launcher enabled."
 Require-Command "git" "Install Git from https://git-scm.com/download/win."
 
-& py -3.11 --version
+if (-not (Get-Command py -ErrorAction SilentlyContinue)) {
+    if ($NoPythonInstall) {
+        throw "The Python launcher was not found. Install Python 3.11 from https://www.python.org/downloads/windows/ and keep the Python launcher enabled."
+    }
+
+    Require-Command "winget" "Install Python 3.11 manually from https://www.python.org/downloads/windows/."
+    Write-Warn "The Python launcher was not found. Installing Python 3.11 with winget."
+    & winget install -e --id Python.Python.3.11 --accept-package-agreements --accept-source-agreements
+}
+
+& py -3.11 --version 2>$null
 if ($LASTEXITCODE -ne 0) {
-    throw "Python 3.11 was not found. Install it with: winget install -e --id Python.Python.3.11"
+    if ($NoPythonInstall) {
+        throw "Python 3.11 was not found. Install it with: winget install -e --id Python.Python.3.11"
+    }
+
+    Require-Command "winget" "Install Python 3.11 manually from https://www.python.org/downloads/windows/."
+    Write-Warn "Python 3.11 was not found. Installing Python 3.11 with winget."
+    & winget install -e --id Python.Python.3.11 --accept-package-agreements --accept-source-agreements
+
+    & py -3.11 --version 2>$null
+    if ($LASTEXITCODE -ne 0) {
+        throw "Python 3.11 was installed or requested, but py -3.11 is still not available. Close and reopen PowerShell, then run this script again."
+    }
 }
 Write-Ok "Python 3.11 is available"
 

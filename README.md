@@ -56,6 +56,7 @@ Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
 The setup script will:
 
 - check for Python 3.11
+- install Python 3.11 with `winget` if it is missing
 - create `.venv`
 - detect your NVIDIA driver with `nvidia-smi`
 - choose a CUDA PyTorch wheel when possible
@@ -110,6 +111,12 @@ Skip Hunyuan3D:
 .\setup_windows.ps1 -SkipHunyuan
 ```
 
+Do not auto-install Python:
+
+```powershell
+.\setup_windows.ps1 -NoPythonInstall
+```
+
 ### Run Script Options
 
 Run Hunyuan on GPU:
@@ -151,6 +158,8 @@ If it says Python 3.11 is not found, install it:
 ```powershell
 winget install -e --id Python.Python.3.11
 ```
+
+The easy setup script can do this automatically if `winget` is available.
 
 Close PowerShell, reopen it in the project folder, and check again:
 
