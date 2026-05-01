@@ -24,10 +24,24 @@ Python 3.14 is too new for some of these 3D/AI packages. Install Python 3.11 eve
 
 ## Step 1: Open PowerShell
 
-Open PowerShell and go to this project folder:
+Open PowerShell and go to the folder where you downloaded or cloned this project.
+
+If you downloaded a ZIP from GitHub, unzip it first, then open PowerShell in the unzipped folder.
+
+One easy way:
+
+1. Open the project folder in File Explorer.
+2. Click the address bar.
+3. Type `powershell`.
+4. Press Enter.
+
+You should now have PowerShell open in the project folder.
+
+If you cloned with Git, the commands look like this:
 
 ```powershell
-cd "C:\Users\Marc\Documents\New project"
+git clone https://github.com/Marc2629/toybox-photo-to-obj.git
+cd toybox-photo-to-obj
 ```
 
 ## Easy Install
@@ -138,10 +152,9 @@ If it says Python 3.11 is not found, install it:
 winget install -e --id Python.Python.3.11
 ```
 
-Close PowerShell, reopen it, go back to the project folder, and check again:
+Close PowerShell, reopen it in the project folder, and check again:
 
 ```powershell
-cd "C:\Users\Marc\Documents\New project"
 py -3.11 --version
 ```
 
@@ -163,7 +176,6 @@ The last command should print `Python 3.11.x`.
 Any time you open a new PowerShell window later, activate the environment again:
 
 ```powershell
-cd "C:\Users\Marc\Documents\New project"
 .\.venv\Scripts\Activate.ps1
 ```
 
